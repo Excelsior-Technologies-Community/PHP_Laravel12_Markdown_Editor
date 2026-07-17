@@ -92,9 +92,16 @@
                         {{ $post->title }}
                     </h2>
 
-                    <p class="text-sm text-gray-500 mb-6">
-                        {{ $post->created_at->format('F d, Y') }}
-                    </p>
+                    <div class="flex items-center gap-3 mb-6">
+                        <p class="text-sm text-gray-500">
+                            {{ $post->created_at->format('F d, Y') }}
+                        </p>
+                        @if($post->is_published)
+                            <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">Published</span>
+                        @else
+                            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full font-medium">Draft</span>
+                        @endif
+                    </div>
 
                     <div class="prose dark:prose-invert max-w-none">
                         {!! \Illuminate\Support\Str::markdown($post->content) !!}
